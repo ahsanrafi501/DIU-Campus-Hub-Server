@@ -119,3 +119,7 @@ dist
 .node_modules
 
 # End of https://mrkandreev.name/snippets/gitignore-generator/#Node
+.prettierignore
+API.md
+docker-compose.yml
+dockerfile

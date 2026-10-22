@@ -23,7 +23,10 @@ const verifyToken = (token: string, secret: string) => {
 		console.log("Token verification failed:", error);
 		return {
 			success: false,
-			error: error instanceof Error ? error.message : "Unknown token verification error",
+			error:
+				error instanceof Error
+					? error.message
+					: "Unknown token verification error",
 		};
 	}
 };

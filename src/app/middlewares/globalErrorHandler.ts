@@ -4,9 +4,8 @@ import { Prisma } from "../../generated/prisma/client";
 import { AppError } from "../../shared/utils/AppError";
 import config from "../config";
 
-
 export const globalErrorHandler = async (
-   // biome-ignore lint/suspicious/noExplicitAny: Explicit any is intentional here
+	// biome-ignore lint/suspicious/noExplicitAny: Explicit any is intentional here
 	err: any,
 	_req: Request,
 	res: Response,
@@ -26,15 +25,15 @@ export const globalErrorHandler = async (
 		errorMessage = "You have provided incorrect field type or missing fields";
 	} else if (err instanceof Prisma.PrismaClientKnownRequestError) {
 		if (err.code === "P2002") {
-			(statusCode = httpStatus.BAD_REQUEST),
-				(errorMessage = "Duplicate Key Error");
+			statusCode = httpStatus.BAD_REQUEST;
+			errorMessage = "Duplicate Key Error";
 		} else if (err.code === "P2003") {
-			(statusCode = httpStatus.BAD_REQUEST),
-				(errorMessage = "Foreign key constraint failed");
+			statusCode = httpStatus.BAD_REQUEST;
+			errorMessage = "Foreign key constraint failed";
 		} else if (err.code === "P2025") {
-			(statusCode = httpStatus.BAD_REQUEST),
-				(errorMessage =
-					"An operation failed because it depends on one or more records that were required but not found.");
+			statusCode = httpStatus.BAD_REQUEST;
+			errorMessage =
+				"An operation failed because it depends on one or more records that were required but not found.";
 		}
 	} else if (err instanceof Prisma.PrismaClientInitializationError) {
 		if (err.errorCode === "P1000") {
@@ -59,7 +58,9 @@ export const globalErrorHandler = async (
 		success: false,
 		statusCode: statusCode || httpStatus.INTERNAL_SERVER_ERROR,
 		name:
-			config.app.nodeEnv === "development" ? errorName : "Internal Server Error",
+			config.app.nodeEnv === "development"
+				? errorName
+				: "Internal Server Error",
 		message:
 			config.app.nodeEnv === "development"
 				? errorMessage
