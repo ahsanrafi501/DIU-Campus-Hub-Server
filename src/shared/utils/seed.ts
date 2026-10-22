@@ -35,7 +35,7 @@ export const seedTesterAdmin = async () => {
 				email,
 				password: hashedPassword,
 				role: UserRole.SUPER_ADMIN,
-				isActive: true,
+				status: "ACTIVE",
 			},
 		});
 
@@ -87,7 +87,7 @@ export const seedTesterSuperAdmin = async () => {
 				email,
 				password: hashedPassword,
 				role: UserRole.ADMIN,
-				isActive: true,
+				status: "ACTIVE",
 			},
 		});
 
@@ -139,7 +139,7 @@ export const seedTesterOrganizer = async () => {
 				email,
 				password: hashedPassword,
 				role: UserRole.ORGANIZER,
-				isActive: true,
+				status: "ACTIVE",
 			},
 		});
 
