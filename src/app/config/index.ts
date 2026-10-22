@@ -49,16 +49,21 @@ const config = {
 		appSecret: process.env.BKASH_APP_SECRET,
 		callbackUrl: process.env.BKASH_CALLBACK_URL,
 	},
-	testerAdmin: {
+	testerSuperAdmin: {
 		name: process.env.TESTER_ADMIN_NAME,
 		email: process.env.TESTER_ADMIN_EMAIL,
 		password: process.env.TESTER_ADMIN_PASSWORD,
 	},
-	testerDoctor: {
-		name: process.env.TESTER__NAME,
-		email: process.env.TESTER_DOCTOR_EMAIL,
-		password: process.env.TESTER_DOCTOR_PASSWORD,
+	testerOrganizer: {
+		name: process.env.TESTER_ORGANIZER_NAME,
+		email: process.env.TESTER_ORGANIZER_EMAIL,
+		password: process.env.TESTER_ORGANIZER_PASSWORD,
 	},
+    testerAdmin: {
+        name: process.env.SUPER_ADMIN_NAME,
+        email: process.env.SUPER_ADMIN_EMAIL,
+        password: process.env.SUPER_ADMIN_PASSWORD,
+    },
 };
 
 export default config;

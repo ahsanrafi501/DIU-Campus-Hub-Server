@@ -3,6 +3,7 @@ import config from "./app/config";
 import transporter from "./app/lib/nodemailer";
 import { prisma } from "./app/lib/prisma";
 import { redisClient } from "./app/lib/redis";
+import { seedTesterAdmin, seedTesterOrganizer, seedTesterSuperAdmin } from "./shared/utils/seed";
 
 
 const PORT = config.port || 3000;
@@ -18,14 +19,11 @@ const main = async () => {
 		await transporter.verify();
 		console.log("Connected to the SMTP server successfully.");
 
-		// await seedSuperAdmin();
-		// await seedTesterAdmin();
-		// await seedTesterDoctor();
+		await seedTesterSuperAdmin();
+		await seedTesterAdmin();
+		await seedTesterOrganizer();
 
-
-		// await deleteUnverifiedDoctors();
-
-
+        
 		app.listen(PORT, () => {
 			console.log(`Server is running on port ${PORT}`);
 		});
