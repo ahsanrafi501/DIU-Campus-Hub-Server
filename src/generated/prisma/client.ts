@@ -31,8 +31,8 @@ export * from "./enums"
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more AchievementNominations
- * const achievementNominations = await prisma.achievementNomination.findMany()
+ * // Fetch zero or more Users
+ * const users = await prisma.user.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -42,142 +42,7 @@ export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts exten
 export { Prisma }
 
 /**
- * Model AchievementNomination
- * 
- */
-export type AchievementNomination = Prisma.AchievementNominationModel
-/**
- * Model AuditLog
- * 
- */
-export type AuditLog = Prisma.AuditLogModel
-/**
- * Model Club
- * 
- */
-export type Club = Prisma.ClubModel
-/**
- * Model ClubMembership
- * 
- */
-export type ClubMembership = Prisma.ClubMembershipModel
-/**
- * Model CommunityComment
- * 
- */
-export type CommunityComment = Prisma.CommunityCommentModel
-/**
- * Model CommunityPost
- * 
- */
-export type CommunityPost = Prisma.CommunityPostModel
-/**
- * Model Event
- * 
- */
-export type Event = Prisma.EventModel
-/**
- * Model EventRegistration
- * 
- */
-export type EventRegistration = Prisma.EventRegistrationModel
-/**
- * Model HackathonJudge
- * 
- */
-export type HackathonJudge = Prisma.HackathonJudgeModel
-/**
- * Model HackathonSubmission
- * 
- */
-export type HackathonSubmission = Prisma.HackathonSubmissionModel
-/**
- * Model HackathonTeam
- * 
- */
-export type HackathonTeam = Prisma.HackathonTeamModel
-/**
- * Model HackathonTeamMember
- * 
- */
-export type HackathonTeamMember = Prisma.HackathonTeamMemberModel
-/**
- * Model MentalHealthAppointment
- * 
- */
-export type MentalHealthAppointment = Prisma.MentalHealthAppointmentModel
-/**
- * Model MentalHealthProvider
- * 
- */
-export type MentalHealthProvider = Prisma.MentalHealthProviderModel
-/**
- * Model ModerationReport
- * 
- */
-export type ModerationReport = Prisma.ModerationReportModel
-/**
- * Model NewsArticle
- * 
- */
-export type NewsArticle = Prisma.NewsArticleModel
-/**
- * Model Notification
- * 
- */
-export type Notification = Prisma.NotificationModel
-/**
- * Model NotificationPreference
- * 
- */
-export type NotificationPreference = Prisma.NotificationPreferenceModel
-/**
- * Model Opportunity
- * 
- */
-export type Opportunity = Prisma.OpportunityModel
-/**
- * Model OpportunityApplication
- * 
- */
-export type OpportunityApplication = Prisma.OpportunityApplicationModel
-/**
- * Model Organization
- * 
- */
-export type Organization = Prisma.OrganizationModel
-/**
- * Model OrganizationMember
- * 
- */
-export type OrganizationMember = Prisma.OrganizationMemberModel
-/**
- * Model StudentProfile
- * 
- */
-export type StudentProfile = Prisma.StudentProfileModel
-/**
- * Model SubmissionScore
- * 
- */
-export type SubmissionScore = Prisma.SubmissionScoreModel
-/**
  * Model User
  * 
  */
 export type User = Prisma.UserModel
-/**
- * Model WelfareCase
- * 
- */
-export type WelfareCase = Prisma.WelfareCaseModel
-/**
- * Model WelfareCaseUpdate
- * 
- */
-export type WelfareCaseUpdate = Prisma.WelfareCaseUpdateModel
-/**
- * Model WelfareResource
- * 
- */
-export type WelfareResource = Prisma.WelfareResourceModel

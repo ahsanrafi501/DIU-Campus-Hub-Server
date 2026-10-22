@@ -5,3 +5,10 @@ enum UserRole {
     ORGANIZER
     SPECIAL_PERMISSION
 }
+
+enum UserStatus {
+    ACTIVE
+    INACTIVE
+    BLOCKED
+    BANNED
+}

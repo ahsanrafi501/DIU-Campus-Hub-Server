@@ -14,7 +14,17 @@ export const UserRole = {
   ADMIN: 'ADMIN',
   SUPER_ADMIN: 'SUPER_ADMIN',
   ORGANIZER: 'ORGANIZER',
-  MODERATOR: 'MODERATOR'
+  SPECIAL_PERMISSION: 'SPECIAL_PERMISSION'
 } as const
 
 export type UserRole = (typeof UserRole)[keyof typeof UserRole]
+
+
+export const UserStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+  BLOCKED: 'BLOCKED',
+  BANNED: 'BANNED'
+} as const
+
+export type UserStatus = (typeof UserStatus)[keyof typeof UserStatus]
