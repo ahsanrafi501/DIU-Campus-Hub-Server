@@ -1,0 +1,11 @@
+model NotificationPreference {
+  userId            String   @id @map("user_id") @db.Uuid
+  emailEnabled      Boolean  @default(true) @map("email_enabled")
+  eventReminders    Boolean  @default(true) @map("event_reminders")
+  opportunityAlerts Boolean  @default(true) @map("opportunity_alerts")
+  clubUpdates       Boolean  @default(true) @map("club_updates")
+  updatedAt         DateTime @default(now()) @map("updated_at") @db.Timestamptz(6)
+  user              User     @relation("NotificationPreference_UserId", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("notification_preferences")
+}

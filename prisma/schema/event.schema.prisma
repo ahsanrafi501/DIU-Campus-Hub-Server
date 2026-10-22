@@ -1,0 +1,27 @@
+model Event {
+  id                   String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  organizationId       String?             @map("organization_id") @db.Uuid
+  createdBy            String              @map("created_by") @db.Uuid
+  title                String              @db.VarChar(200)
+  description          String              @db.Text
+  eventType            String              @map("event_type") @db.VarChar(30)
+  venue                String?             @db.VarChar(255)
+  bannerUrl            String?             @map("banner_url") @db.Text
+  startsAt             DateTime            @map("starts_at") @db.Timestamptz(6)
+  endsAt               DateTime            @map("ends_at") @db.Timestamptz(6)
+  registrationDeadline DateTime?           @map("registration_deadline") @db.Timestamptz(6)
+  capacity             Int?
+  registrationFee      Decimal             @map("registration_fee") @db.Decimal(10, 2)
+  status               String              @default("DRAFT") @db.VarChar(20)
+  createdAt            DateTime            @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt            DateTime            @default(now()) @map("updated_at") @db.Timestamptz(6)
+  organization         Organization?       @relation("Event_OrganizationId", fields: [organizationId], references: [id], onDelete: SetNull)
+  user                 User                @relation("Event_CreatedBy", fields: [createdBy], references: [id])
+  eventRegistrations   EventRegistration[] @relation("EventRegistration_EventId")
+  hackathonTeams       HackathonTeam[]     @relation("HackathonTeam_EventId")
+  hackathonJudges      HackathonJudge[]    @relation("HackathonJudge_EventId")
+
+  @@index([status, startsAt])
+  @@index([organizationId])
+  @@map("events")
+}

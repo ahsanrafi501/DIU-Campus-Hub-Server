@@ -1,0 +1,12 @@
+model Club {
+  id              String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  organizationId  String           @unique @map("organization_id") @db.Uuid
+  joiningFee      Decimal          @map("joining_fee") @db.Decimal(10, 2)
+  membershipOpen  Boolean          @default(true) @map("membership_open")
+  requirements    String?          @db.Text
+  createdAt       DateTime         @default(now()) @map("created_at") @db.Timestamptz(6)
+  organization    Organization     @relation("Club_OrganizationId", fields: [organizationId], references: [id], onDelete: Cascade)
+  clubMemberships ClubMembership[] @relation("ClubMembership_ClubId")
+
+  @@map("clubs")
+}

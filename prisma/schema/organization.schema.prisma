@@ -1,0 +1,16 @@
+model Organization {
+  id                  String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name                String               @db.VarChar(150)
+  description         String?              @db.Text
+  logoUrl             String?              @map("logo_url") @db.Text
+  organizationType    String               @map("organization_type") @db.VarChar(30)
+  contactEmail        String?              @map("contact_email") @db.VarChar(255)
+  isActive            Boolean              @default(true) @map("is_active")
+  createdAt           DateTime             @default(now()) @map("created_at") @db.Timestamptz(6)
+  organizationMembers OrganizationMember[] @relation("OrganizationMember_OrganizationId")
+  events              Event[]              @relation("Event_OrganizationId")
+  clubs               Club[]               @relation("Club_OrganizationId")
+  opportunities       Opportunity[]        @relation("Opportunity_OrganizationId")
+
+  @@map("organizations")
+}

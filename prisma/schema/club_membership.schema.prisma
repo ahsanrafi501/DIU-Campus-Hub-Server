@@ -1,0 +1,12 @@
+model ClubMembership {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  clubId    String   @map("club_id") @db.Uuid
+  userId    String   @map("user_id") @db.Uuid
+  status    String   @default("PENDING") @db.VarChar(20)
+  appliedAt DateTime @default(now()) @map("applied_at") @db.Timestamptz(6)
+  club      Club     @relation("ClubMembership_ClubId", fields: [clubId], references: [id], onDelete: Cascade)
+  user      User     @relation("ClubMembership_UserId", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([clubId, userId])
+  @@map("club_memberships")
+}

@@ -1,0 +1,15 @@
+model SubmissionScore {
+  id                  String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  submissionId        String              @map("submission_id") @db.Uuid
+  judgeId             String              @map("judge_id") @db.Uuid
+  innovationScore     Decimal             @map("innovation_score") @db.Decimal(5, 2)
+  technicalScore      Decimal             @map("technical_score") @db.Decimal(5, 2)
+  presentationScore   Decimal             @map("presentation_score") @db.Decimal(5, 2)
+  feedback            String?             @db.Text
+  evaluatedAt         DateTime            @default(now()) @map("evaluated_at") @db.Timestamptz(6)
+  hackathonSubmission HackathonSubmission @relation("SubmissionScore_SubmissionId", fields: [submissionId], references: [id], onDelete: Cascade)
+  hackathonJudge      HackathonJudge      @relation("SubmissionScore_JudgeId", fields: [judgeId], references: [id], onDelete: Cascade)
+
+  @@unique([submissionId, judgeId])
+  @@map("submission_scores")
+}

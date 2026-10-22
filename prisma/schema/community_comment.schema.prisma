@@ -1,0 +1,13 @@
+model CommunityComment {
+  id                String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  postId            String             @map("post_id") @db.Uuid
+  userId            String             @map("user_id") @db.Uuid
+  content           String             @db.Text
+  createdAt         DateTime           @default(now()) @map("created_at") @db.Timestamptz(6)
+  communityPost     CommunityPost      @relation("CommunityComment_PostId", fields: [postId], references: [id], onDelete: Cascade)
+  user              User               @relation("CommunityComment_UserId", fields: [userId], references: [id], onDelete: Cascade)
+  moderationReports ModerationReport[] @relation("ModerationReport_CommentId")
+
+  @@index([postId])
+  @@map("community_comments")
+}

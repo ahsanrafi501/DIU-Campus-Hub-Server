@@ -1,0 +1,16 @@
+model MentalHealthAppointment {
+  id                   String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  studentId            String               @map("student_id") @db.Uuid
+  providerId           String               @map("provider_id") @db.Uuid
+  startsAt             DateTime             @map("starts_at") @db.Timestamptz(6)
+  endsAt               DateTime             @map("ends_at") @db.Timestamptz(6)
+  reason               String?              @db.Text
+  status               String               @default("PENDING") @db.VarChar(20)
+  createdAt            DateTime             @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt            DateTime             @default(now()) @map("updated_at") @db.Timestamptz(6)
+  user                 User                 @relation("MentalHealthAppointment_StudentId", fields: [studentId], references: [id])
+  mentalHealthProvider MentalHealthProvider @relation("MentalHealthAppointment_ProviderId", fields: [providerId], references: [id])
+
+  @@index([providerId, startsAt])
+  @@map("mental_health_appointments")
+}
